@@ -38,8 +38,49 @@ def add_transaction():
 
 
 # Update operation
+@app.route("/edit/<int:transaction_id>",methods = ["GET","POST"])
+def edit_transaction(transaction_id):
+    if request.method == 'POST':
+        #Extract the updated values from the form fields
+        date = request.form['date']
+        amount = float(request.form['amount'])
+
+        #Find the transaction with the matching ID and update its values
+        for transaction in transactions:
+            if transaction['id'] == transaction_id:
+                transaction['date'] = date
+                transaction['amount'] = amount
+                break
+
+
+        # Redirect to the transactions list page 
+        return redirect(url_for("get_transactions"))
+
+
+    for transaction in transactions:
+        if transaction['id'] == transaction_id:
+            return render_template("edit.html", transaction=transaction)
+
+
+
+        
+
+        
+
+
 
 # Delete operation
+
+@app.route("/delete/<int:transaction_id>")
+def delete_transaction(transaction_id):
+    # Find the transaction with the matching ID and remove it from the list
+    for transaction in transactions:
+        if transaction['id'] == transaction_id:
+            transactions.remove(transaction)
+            break
+
+    # Redirect to the transactions list page
+    return redirect(url_for("get_transactions"))
 
 # Run the Flask app
 if __name__ == "__main__":
