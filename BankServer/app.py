@@ -1,5 +1,5 @@
 # Import libraries
-# running on http://localhost:8080/
+# running on http://localhost:5001/
 from flask import Flask, request, url_for,redirect, render_template
 
 
@@ -63,12 +63,6 @@ def edit_transaction(transaction_id):
 
 
 
-        
-
-        
-
-
-
 # Delete operation
 
 @app.route("/delete/<int:transaction_id>")
@@ -82,7 +76,16 @@ def delete_transaction(transaction_id):
     # Redirect to the transactions list page
     return redirect(url_for("get_transactions"))
 
+@app.route("/search", methods=["GET", "POST"])
+def search_transactions():
+    if request.method == "POST":
+        min_amount = float(request.form["min_amount"])
+        max_amount = float(request.form["max_amount"])
+        filtered_transactions = [transaction for transaction in transactions if min_amount <= transaction["amount"] <= max_amount]
+        return render_template("transactions.html", transactions=filtered_transactions)
+    return render_template("search.html")
+
 # Run the Flask app
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(port=5001, debug=True)
     
