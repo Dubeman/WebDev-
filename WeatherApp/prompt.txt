@@ -1,0 +1,11 @@
+I want to build a flask based app using the OpenWeather API where i type something 
+like the following in my webpage :- 
+
+User: "What is the weather like in Norway, Oslo?"
+System: Returns a coversational reply to the answer using
+the accurate json reply from OpenWeather API and the 
+converstional reply using the OpenAI API
+
+Give me the scaffolding for the app.
+
+-----

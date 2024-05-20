@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #weather-form {
+            margin: 30px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #aaa;
+        }
+        input[type="text"], input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+        }
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast App</h1>
+        <form id="weather-form" method="POST" action="/">
+            <label for="city">Enter a city:</label>
+            <input type="text" id="city" name="city" required>
+
+            <label for="temperature">Temperature:</label>
+            <input type="range" id="temperature" name="temperature" min="0" max="1" step="0.01" value="0.5">
+
+            <label for="top_p">Top P:</label>
+            <input type="range" id="top_p" name="top_p" min="0" max="1" step="0.01" value="0.5">
+
+            <input type="submit" value="Get Forecast">
+        </form>
+        {% if forecast %}
+        <p>{{ forecast }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
