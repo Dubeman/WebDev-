@@ -1,0 +1,26 @@
+<h1>Async Demo</h1>
+<p id="demo">A Paragraph.</p>
+<script>
+    function myDisplayer(something) {
+        var x = document.getElementById("demo");
+        x.style.fontSize = "25px";
+        x.style.color = "red";
+        x.innerHTML = something;
+    }
+
+    async function myFunction() {
+        // You can throw an error to simulate a failure
+        // throw new Error("Something went wrong");
+        return "Hello";
+    }
+
+    myFunction().then(
+        function(value) {
+            myDisplayer(value);
+        }
+    ).catch(
+        function(error) {
+            myDisplayer(error);
+        }
+    );
+</script>
