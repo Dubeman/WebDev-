@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Stack_1 = require("./Stack");
 class Pointer {
     constructor(x, y) {
         this.x = x;
@@ -66,3 +68,8 @@ console.log(y.getPoint());
 console.log(z.getPoint());
 let c = new C(10);
 console.log(c.getLength());
+let stack = new Stack_1.Stack();
+stack.push(1);
+stack.push(2);
+stack.push(3);
+stack.printStack();
